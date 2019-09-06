@@ -1,0 +1,4 @@
+﻿  ConsoleApplication1.cpp
+a:\00 pta程序设计类实验平台-code\vs\consoleapplication1\consoleapplication1\consoleapplication1.cpp(15): warning C4244: “初始化”: 从“double”转换到“int”，可能丢失数据
+a:\00 pta程序设计类实验平台-code\vs\consoleapplication1\consoleapplication1\consoleapplication1.cpp(47): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
+  ConsoleApplication1.vcxproj -> A:\00 PTA程序设计类实验平台-code\VS\ConsoleApplication1\Debug\ConsoleApplication1.exe
