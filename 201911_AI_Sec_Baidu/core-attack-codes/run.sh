@@ -1,0 +1,15 @@
+python a_01.py
+python a_02.py
+python a_03.py
+python a_04.py
+python a_05.py
+python a_06.py
+python a_07.py
+python a_08.py
+python a_09.py
+python a_10.py
+python a_11.py
+python a_12.py
+python a_13.py
+python a_14.py
+python a_15.py
