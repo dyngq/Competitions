@@ -10,17 +10,18 @@ class Solution:
     #     return res
     def fib(self, n: int) -> int:
         a, b = 0, 1
-        res = []
+        res = 0
         def f(n,a,b):
             if n == 0:
-                res.append(a)
+                nonlocal res
+                res = a
                 return
             # print('1',a,b)
             a, b = a + b, a
             # print('2',a,b)
             f(n-1,a,b) # 这个地方可以直接用循环，不用递归，这儿的递归也只是起到了控制循环的作用
         f(n,a,b)
-        return res[0]%(1000000007)
+        return res%(1000000007)
     # def fib(self, n: int) -> int:
     #     if n<0:
     #         return -1
