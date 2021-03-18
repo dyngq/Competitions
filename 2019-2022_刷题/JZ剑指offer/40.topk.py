@@ -1,85 +1,118 @@
 from typing import List
-class Solution:
-    def getLeastNumbers_maopao(self, arr: List[int], k: int) -> List[int]:
-        le = len(arr)
-        for i in range(le-1):
-            for j in range(le-i-1):
-                if arr[j] < arr[j+1]:
-                    arr[j], arr[j+1] = arr[j+1], arr[j]
-            if k == 0:
-                return []
-            if (i >= k-1) or (k >= le and i >= k-2):
-                t = arr[-k:]
-                print(i,le,k)
-                t.reverse()
-                return t
-    def getLeastNumbers_s(self, arr: List[int], k: int) -> List[int]:
-        arr.sort()
-        return arr[:k]
-    def getLeastNumbers_fast(self, arr: List[int], k: int) -> List[int]:
-        def qucik_sort(arr,l,r):
-            lb, rb = l, r
-            if l >= r:
-                return
-            while l < r:
-                while l<r and arr[lb] <= arr[r]: r-=1
-                while l<r and arr[lb] >= arr[l]: l+=1
-                arr[l], arr[r] = arr[r], arr[l]
-                # print(arr)
-            arr[lb], arr[l] = arr[l], arr[lb]
-            print(lb,rb,l,r)
-            qucik_sort(arr, lb, l-1)
-            qucik_sort(arr, l+1, rb)
-        qucik_sort(arr, 0, len(arr)-1)
-        return arr
-    def getLeastNumbers_f(self, arr: List[int], k: int) -> List[int]:
-        if k > len(arr):
-            k = len(arr)
-        def qucik_sort(arr,l,r):
-            lb, rb = l, r
-            if lb >= rb:
-                return
-            while l < r:
-                while l<r and arr[lb] <= arr[r]: r-=1
-                while l<r and arr[lb] >= arr[l]: l+=1
-                arr[l], arr[r] = arr[r], arr[l]
-                # print(arr)
-            arr[lb], arr[l] = arr[l], arr[lb]
-            # print(lb,rb,l,r)
-            if lb >= k:
-                return
-            qucik_sort(arr, lb, l-1)
-            qucik_sort(arr, l+1, rb)
-        qucik_sort(arr, 0, len(arr)-1)
-        t = arr[:k]
-        return t
-    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
-        if k > len(arr):
-            return arr
-        def qucik_sort(arr,l,r):
-            lb, rb = l, r
-            if lb >= rb:
-                return
-            while l < r:
-                while l<r and arr[lb] <= arr[r]: r-=1
-                while l<r and arr[lb] >= arr[l]: l+=1
-                arr[l], arr[r] = arr[r], arr[l]
-                # print(arr)
-            arr[lb], arr[l] = arr[l], arr[lb]
-            # print(lb,rb,l,r)
-            if k < l: return qucik_sort(arr, lb, l-1)
-            if k > l: return qucik_sort(arr, l+1, rb)
-        qucik_sort(arr, 0, len(arr)-1)
-        t = arr[:k]
-        return t
+# class Solution:
+#     def getLeastNumbers_maopao(self, arr: List[int], k: int) -> List[int]:
+#         le = len(arr)
+#         for i in range(le-1):
+#             for j in range(le-i-1):
+#                 if arr[j] < arr[j+1]:
+#                     arr[j], arr[j+1] = arr[j+1], arr[j]
+#             if k == 0:
+#                 return []
+#             if (i >= k-1) or (k >= le and i >= k-2):
+#                 t = arr[-k:]
+#                 print(i,le,k)
+#                 t.reverse()
+#                 return t
+#     def getLeastNumbers_s(self, arr: List[int], k: int) -> List[int]:
+#         arr.sort()
+#         return arr[:k]
+#     def getLeastNumbers_fast(self, arr: List[int], k: int) -> List[int]:
+#         def qucik_sort(arr,l,r):
+#             lb, rb = l, r
+#             if l >= r:
+#                 return
+#             while l < r:
+#                 while l<r and arr[lb] <= arr[r]: r-=1
+#                 while l<r and arr[lb] >= arr[l]: l+=1
+#                 arr[l], arr[r] = arr[r], arr[l]
+#                 # print(arr)
+#             arr[lb], arr[l] = arr[l], arr[lb]
+#             print(lb,rb,l,r)
+#             qucik_sort(arr, lb, l-1)
+#             qucik_sort(arr, l+1, rb)
+#         qucik_sort(arr, 0, len(arr)-1)
+#         return arr
+#     def getLeastNumbers_f(self, arr: List[int], k: int) -> List[int]:
+#         if k > len(arr):
+#             k = len(arr)
+#         def qucik_sort(arr,l,r):
+#             lb, rb = l, r
+#             if lb >= rb:
+#                 return
+#             while l < r:
+#                 while l<r and arr[lb] <= arr[r]: r-=1
+#                 while l<r and arr[lb] >= arr[l]: l+=1
+#                 arr[l], arr[r] = arr[r], arr[l]
+#                 # print(arr)
+#             arr[lb], arr[l] = arr[l], arr[lb]
+#             # print(lb,rb,l,r)
+#             if lb >= k:
+#                 return
+#             qucik_sort(arr, lb, l-1)
+#             qucik_sort(arr, l+1, rb)
+#         qucik_sort(arr, 0, len(arr)-1)
+#         t = arr[:k]
+#         return t
+#     def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+#         if k > len(arr):
+#             return arr
+#         def qucik_sort(arr,l,r):
+#             lb, rb = l, r
+#             if lb >= rb:
+#                 return
+#             while l < r:
+#                 while l<r and arr[lb] <= arr[r]: r-=1
+#                 while l<r and arr[lb] >= arr[l]: l+=1
+#                 arr[l], arr[r] = arr[r], arr[l]
+#                 # print(arr)
+#             arr[lb], arr[l] = arr[l], arr[lb]
+#             # print(lb,rb,l,r)
+#             if k < l: return qucik_sort(arr, lb, l-1)
+#             if k > l: return qucik_sort(arr, l+1, rb)
+#         qucik_sort(arr, 0, len(arr)-1)
+#         t = arr[:k]
+#         return t
 
+class Solution:
+    def getLeastNumbers_fast(self, arr: List[int], k: int) -> List[int]:
+        def quick_sort(arr,l,r):
+            if l >= r: return
+            i, j = l, r
+            while i < j:
+                while i < j and arr[j] >= arr[l]: j-=1
+                while i < j and arr[i] <= arr[l]: i+=1 
+                arr[i], arr[j] = arr[j], arr[i]
+            arr[i], arr[l] = arr[l], arr[i]
+            quick_sort(arr,l,i-1)
+            quick_sort(arr,i+1,r)
+        quick_sort(arr,0,len(arr)-1)
+        return arr
+            
+    def getLeastNumbers(self, arr: List[int], k: int) -> List[int]:
+        if k >= len(arr): return arr
+        def quick_sort(arr,l,r):
+            i, j = l, r
+            while i < j:
+                while i < j and arr[j] >= arr[l]: j -= 1
+                while i < j and arr[i] <= arr[l]: i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+            arr[l], arr[i] = arr[i], arr[l]
+            print('123',arr)
+            if i == k: return
+            elif i > k: quick_sort(arr, l, i-1)
+            else: quick_sort(arr, i+1, r)
+        quick_sort(arr, 0, len(arr)-1)
+        return arr[:k]
 
 
 # arra = [0,1,2,0,2,1,6,1,8,5,2,0,6,4,10,11,7,9,2,7,7,14,10,9,9,0,3,13,24,14,9,6,0,19,13,14,29,13,14,16,8,16,7,7,41,31,41,21,28,10,6,8,27,39,1,23,52,7,45,55,18,59,62,2,46,60,29,59,12,19,15,44,5,45,21,58,0,43,11,58,52,48,5,40,72,30,39,29,18,3,69,32,18,16,23,45,32,3,59,17,76,92,40,61,88,70,57,100,100,43,86,17,41,69,86,40,112,71,81,118,3,59,50,40,87,80,1,20,108,45,21,2,16,55,43,50,65,120,73,22,117,100,93,68,75,86,96,39,47,121,114,43,106,67,91,107,145,45,55,112,128,58,154,128,48,82,146,30,86,114,86,10,6,124,119,32,109,86,126,52,103,143,31,129,45,58,18,152,57,185,26,187,83,103,119,5,128,184,156,3,173,74,187,47,59,61,148,139,80,136,196,41,10,201,205,26,55,63,102,154,16,110,70,168,154,73,182,89,106,50,116,198,21,77,159,76,51,28,145,75,157,107,9,23,156,186,103,239,81,162,33,61,223,113,106,105,7,51,14,216,77,189,106,102,180,46,231,180,0,31,252,156,55,255,156,61,65,254,187,270,264,156,260,156,108,165,56,243,207,240,237,6,193,97,31,37,220,206,208,32,17,191,103,92,159,105,143,163,121,129,117,6,273,312,300,59,130,311,261,275,231,208,193,114,239,178,268,170,116,86,312,61,16,75,145,36,305,171,14,311,305,120,332,85,80,163,207,268,289,310,198,283,190,111,94,18,115,163,241,39,266,313,285,289,119,90,303,14,236,369,181,181,81,113,146,257,258,290,66,366,242,213,230,252,210,10,301,343,103,188,257,332,19,212,387,87,93,109,346,103,353,222,54,194,361,51,162,21,151,144,342,277,134,56,281,91,50,225,243,249,196,298,325,171,165,89,173,190,73,156,329,403,100,419,222,348,156,211,211,136,20,311,326,354,13,247,237,298,266,62,78,157,449,292,21,362,268,27,14,365,82,64,170,93,148,43,78,295,47,31,126,80,367,37,385,266,25,338,355,276,361,248,293,215,30,432,436,369,359,338,155,460,51,170,63,224,316,171,223,286,279,373,231,119,136,69,395,210,28,326,249,32,276,205,191,109,187,295,349,0,341,100,160,305,77,300,452,247,355,380,502,27,141,137,429,56,535,341,477,386,538,176,513,249,48,399,384,248,135,505,22,454,480,349,209,538,44,154,349,24,498,499,488,354,552,289,149,468,420,397,366,504,113,116,267,183,94,377,474,7,292,423,336,42,142,176,409,217,36,56,456,207,579,56,46,111,256,226,327,62,364,112,413,448,61,499,559,361,148,316,115,332,423,530,295,296,17,538,71,617,444,556,320,473,363,526,377,48,163,621,537,278,629,509,50,253,275,103,283,580,10,418,545,150,443,189,506,424,101,438,319,452,150,509,497,565,77,444,312,86,99,655,3,16,560,65,661,244,6,280,564,617,90,204,577,388,251,185,554,425,166,55,208,513,298,36,82,321,41,283,62,530,495,245,229,191,608,313,307,485,243,229,268,1,522,581,560,628,374,145,129,124,360,146,393,227,515,552,471,166,496,703,216,490,136,447,454,225,65,573,87,571,360,705,75,257,539,419,91,158,539,486,609,19,463,399,568,634,484,532,312,432,680,472,415,412,113,133,657,398,613,448,636,172,230,593,576,631,277,27,617,494,368,194,607,547,376,312,482,589,718,435,600,438,33,16,577,417,168,305,594,442,303,498,192,643,48,124,576,53,266,259,503,519,760,498,178,136,497,59,795,96,101,770,292,621,572,466,339,532,299,753,681,317,376,178,814,41,808,258,132,776,127,200,324,511,400,572,482,74,273,449,94,245,191,781,399,315,221,732,680,320,406,662,769,763,440,149,603,112,747,201,63,795,315,164,289,699,309,590,488,830,684,762,417,329,658,586,721,452,553,379,39,34,746,272,433,333,164,78,690,96,48,355,605,216,371,602,640,815,181,753,560,622,515,459,121,758,186,392,791,733,781,730,463,822,804,492,114,227,199,869,350,256,822,921,880,819,618,308,198,188,238,493,455,788,129,740,832,101,452,135,54,466,410,507,727,339,83,585,677,670,742,517,465,329,182,392,272,249,906,462,525,52,697,216,85,544,931,214,802,43,103,161,763,666,359,205,711,683,629,263,389,365,2,308,170,675,741,301,612,606,340,879,597,4,130,304,507,738]
 arra = [2,5,1,0,3,4]
+arra = [0,0,2,3,2,1,1,2,0,4]
+arra = [3,2,1]
 S = Solution()
 # print(S.getLeastNumbers(arra,842))
-print(S.getLeastNumbers(arra,4))
+# print(S.getLeastNumbers_fast(arra,4))
+print(S.getLeastNumbers(arra,2))
 
 
 # 3 5 1 2 4
