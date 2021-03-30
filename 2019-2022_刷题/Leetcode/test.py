@@ -71,3 +71,13 @@ if __name__ == "__main__":
 # Hpq = -sum([p[i] * np.log(q[i]) for i in range(len(p))])
 # print (f"H(p, q) = {Hpq}")
 
+# i = 0
+# j = 0
+# switch = {
+#     0:lambda i:i+1,
+#     1:lambda j:j+1,
+#     2:lambda x:x**x,
+#     3:lambda x:x**x
+# }
+# switch[0](i, j)
+# print(i, j)
