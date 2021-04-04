@@ -81,3 +81,10 @@ if __name__ == "__main__":
 # }
 # switch[0](i, j)
 # print(i, j)
+
+# while 1:
+#     try:
+#         a,b = (input().split())
+#         print(int(a)+int(b))
+#     except:
+#         break
